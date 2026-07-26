@@ -3,36 +3,99 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Halaman Utama kelompok 1</title>
+        <title>Halaman Utama Kelompok 1</title>
         <style>
+            body {
+                background-color: #121212;
+                color: #e0e0e0;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            header {
+                background-color: #1e1e1e;
+                color: #ffffff;
+                padding: 2rem;
+                text-align: center;
+                border-bottom: 2px solid #333333;
+            }
+            .container {
+                flex: 1;
+                max-width: 600px;
+                margin: 2rem auto;
+                padding: 0 1rem;
+                width: 100%;
+            }
+            h2 {
+                color: #bb86fc;
+                border-bottom: 1px solid #333333;
+                padding-bottom: 0.5rem;
+            }
+            .anggota {
+                background-color: #1e1e1e;
+                border: 1px solid #333333;
+                border-radius: 8px;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+            .anggota h3 {
+                margin-top: 0;
+                color: #03dac6;
+                text-transform: capitalize;
+            }
+            footer {
+                background-color: #1e1e1e;
+                color: #888888;
+                text-align: center;
+                padding: 1rem;
+                border-top: 1px solid #333333;
+            }
         </style>
     </head>
     <body>
         <header>
             <h1>Selamat Datang di Halaman Utama Kelompok 1</h1>
-            <p>Tugas pemrograman Web dengan PHP & HTML</p>
+            <p>Tugas Pemrograman Web dengan HTML & JavaScript</p>
         </header>
-        <div class="container">
-        <h2>Data Anggota Kelompok</h2>
-
-        <?php
-        $anggota = [
-            ["nama" => "andi", "nim" => "123456"],
-            ["nama" => "budi", "nim" => "654321"]
-        ];
-        foreach ($anggota as $a) {
-            <div class="anggota">
-                echo "
-            <h3>{$a['nama']}</h3>"
-            <p>NIM: {$a['nim']}</p>
-            </div>
-        }
         
-        ?>
-        </div>
+        <div class="container">
+            <h2>Data Anggota Kelompok</h2>
+            <!-- Wadah kosong yang akan diisi oleh JavaScript -->
+            <div id="daftar-anggota"></div>
+        </div> 
 
         <footer>
-            <p>&copy; <?php echo date("Y"); ?> Kelompok 1. All rights reserved.</p>
+            <p>&copy; <span id="tahun-hak-cipta"></span> Kelompok 1. All rights reserved.</p>
         </footer>
+
+        <script>
+            // 1. Data Anggota (Array of Objects)
+            const anggota = [
+                { nama: "andi", nim: "123456" },
+                { nama: "budi", nim: "654321" }
+            ];
+
+            // 2. Render Data Anggota ke HTML
+            const wadahAnggota = document.getElementById('daftar-anggota');
+            let htmlKonten = '';
+
+            anggota.forEach(a => {
+                htmlKonten += `
+                    <div class="anggota">
+                        <h3>${a.nama}</h3>
+                        <p>NIM: ${a.nim}</p>
+                    </div>
+                `;
+            });
+
+            wadahAnggota.innerHTML = htmlKonten;
+
+            // 3. Menampilkan Tahun Otomatis di Footer
+            document.getElementById('tahun-hak-cipta').textContent = new Date().getFullYear();
+        </script>
     </body>
 </html>
