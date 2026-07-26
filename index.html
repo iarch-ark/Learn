@@ -3,64 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Futuristik</title>
+    <title>Portofolio Glassmorphism</title>
     <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #080711;
-            --card-bg: rgba(20, 20, 35, 0.6);
-            --primary: #00f0ff;
-            --secondary: #ff007f;
-            --text-color: #e0e6ed;
-            --text-dim: #8a99ad;
-            --border-glow: rgba(0, 240, 255, 0.3);
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            --glass-bg: rgba(255, 255, 255, 0.07);
+            --glass-bg-hover: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-purple: #c084fc;
+            --accent-blue: #38bdf8;
+            --whatsapp-bg: rgba(37, 211, 102, 0.2);
+            --whatsapp-border: rgba(37, 211, 102, 0.5);
+            --whatsapp-color: #4ade80;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Rajdhani', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(ff, 0, 127, 0.05) 0%, transparent 20%);
-            min-height: 100vh;
-        }
-
-        /* Container Simulasi Ponsel / Mobile View */
-        .mobile-container {
-            width: 100%;
-            max-width: 430px; /* Ukuran standar ponsel modern */
-            min-height: 100vh;
-            padding: 20px 20px 80px 20px;
+            align-items: center;
+            padding: 20px;
             position: relative;
             overflow-x: hidden;
-            border-left: 1px solid rgba(255, 255, 255, 0.05);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Hero / Profile Section */
-        .profile-card {
+        /* Decorative Glowing Orbs for Liquid Glass Effect Background */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            background: rgba(192, 132, 252, 0.3);
+            top: -50px;
+            left: -50px;
+        }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(56, 189, 248, 0.25);
+            bottom: -100px;
+            right: -50px;
+        }
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: rgba(236, 72, 153, 0.2);
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Main Container: Mobile & Desktop Responsive Layout */
+        .app-container {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: var(--glass-shadow);
+            z-index: 1;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 850px) {
+            .app-container {
+                flex-direction: row;
+                min-height: 650px;
+            }
+        }
+
+        /* Sidebar / Left Column (Profile & Bio) */
+        .sidebar {
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 30px;
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.02);
         }
 
-        .avatar-wrapper {
+        @media (min-width: 850px) {
+            .sidebar {
+                width: 360px;
+                border-bottom: none;
+                border-right: 1px solid var(--glass-border);
+                justify-content: space-between;
+                position: sticky;
+                top: 0;
+            }
+        }
+
+        .avatar-container {
             position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 15px auto;
+            width: 130px;
+            height: 130px;
+            margin-bottom: 20px;
         }
 
         .avatar-img {
@@ -68,258 +133,363 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 15px var(--primary);
+            border: 2px solid var(--glass-border);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
-        .avatar-wrapper::after {
-            content: '';
+        .status-badge {
             position: absolute;
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 50%;
-            border: 2px dashed var(--secondary);
-            animation: rotate 12s linear infinite;
-        }
-
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
-        }
-
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            bottom: 5px;
+            right: 5px;
+            background: rgba(34, 197, 94, 0.85);
+            backdrop-filter: blur(5px);
             color: #fff;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .tagline {
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .profile-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-title {
             font-size: 0.95rem;
-            color: var(--primary);
-            letter-spacing: 2px;
-            margin-top: 5px;
-            text-transform: uppercase;
+            color: var(--accent-blue);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .profile-bio {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--glass-bg-hover);
+            transform: translateY(-3px);
+            color: var(--accent-purple);
+            border-color: var(--accent-purple);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            padding: 40px 30px;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 850px) {
+            .main-content {
+                padding: 45px 40px;
+            }
         }
 
         /* Section Styling */
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            color: #fff;
-            margin: 25px 0 15px 0;
+        .section-header {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-main);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--primary), transparent);
+        .section-header i {
+            color: var(--accent-purple);
         }
 
-        /* Glassmorphism Card Style */
         .glass-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-glow);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
         }
 
         .glass-card:hover {
-            border-color: var(--primary);
+            background: var(--glass-bg-hover);
+            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
 
-        /* About Section */
-        .about-text {
-            font-size: 0.95rem;
-            color: var(--text-dim);
-            line-height: 1.5;
-        }
-
-        /* Skills Badges */
+        /* Skills Chips */
         .skills-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
+            margin-bottom: 28px;
         }
 
-        .skill-badge {
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 6px 12px;
-            border-radius: 20px;
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 8px 16px;
+            border-radius: 30px;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 500;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(192, 132, 252, 0.15);
+            border-color: var(--accent-purple);
+            color: #fff;
         }
 
         /* Projects Section */
-        .project-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: 5px;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 28px;
         }
 
-        .project-card p {
+        @media (min-width: 600px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .project-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
             font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-bottom: 10px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 14px;
         }
 
-        .project-tags {
+        .project-tech {
             display: flex;
             gap: 6px;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
         }
 
-        .project-tags span {
+        .tech-badge {
             font-size: 0.75rem;
-            color: var(--secondary);
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
-        .btn-link {
-            display: inline-block;
-            color: var(--primary);
-            text-decoration: none;
+        .project-link {
             font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Bottom Fixed Navigation Bar */
-        .nav-bar {
-            position: fixed;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 40px);
-            max-width: 390px;
-            background: rgba(10, 10, 20, 0.85);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border-glow);
-            border-radius: 25px;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            z-index: 100;
-        }
-
-        .nav-item {
-            color: var(--text-dim);
+            font-weight: 600;
+            color: var(--accent-purple);
             text-decoration: none;
-            font-size: 1.2rem;
-            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s ease;
         }
 
-        .nav-item:hover, .nav-item.active {
-            color: var(--primary);
-            text-shadow: 0 0 8px var(--primary);
+        .project-link:hover {
+            gap: 10px;
+        }
+
+        /* Contact Section & WhatsApp Button */
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--whatsapp-bg);
+            border: 1px solid var(--whatsapp-border);
+            color: var(--whatsapp-color);
+            padding: 14px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.15);
+        }
+
+        .whatsapp-btn:hover {
+            background: rgba(37, 211, 102, 0.9);
+            color: #051a0e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+        }
+
+        .whatsapp-btn i {
+            font-size: 1.3rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="mobile-container">
-        
-        <!-- Header / Profil -->
-        <header class="profile-card">
-            <div class="avatar-wrapper">
-                <!-- Ganti link gambar di bawah dengan foto Anda -->
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar" class="avatar-img">
-            </div>
-            <h1>Wahid Wardani, S.Kom</h1>
-            <div class="tagline">// Web Developer & UI Designer</div>
-        </header>
+    <!-- Ambient Glass Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-        <!-- Tentang Saya -->
-        <section id="about">
-            <div class="section-title">
-                <i class="fa-solid fa-terminal" style="color: var(--primary);"></i>
-                <span>TENTANG</span>
-            </div>
-            <div class="glass-card">
-                <p class="about-text">
-                    Mengembangkan antarmuka digital futuristik berkinerja tinggi. Berfokus pada pengalaman pengguna yang intuitif, estetika *cyberpunk*, dan kode yang bersih.
+    <!-- Main Responsive Application Container -->
+    <div class="app-container">
+        
+        <!-- Left Sidebar / Profile Info -->
+        <aside class="sidebar">
+            <div>
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Avatar" class="avatar-img">
+                    <div class="status-badge">
+                        <span class="status-dot"></span> Online
+                    </div>
+                </div>
+                <h1 class="profile-name">Alexa R.</h1>
+                <p class="profile-title">UI/UX Designer & Frontend Developer</p>
+                <p class="profile-bio">
+                    Menciptakan pengalaman digital yang elegan, intuitif, dan responsif dengan estetika Glassmorphism modern.
                 </p>
             </div>
-        </section>
 
-        <!-- Keahlian -->
-        <section id="skills">
-            <div class="section-title">
-                <i class="fa-solid fa-microchip" style="color: var(--primary);"></i>
-                <span>KEAHLIAN</span>
+            <div class="social-links">
+                <a href="#" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon" title="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
             </div>
-            <div class="skills-grid">
-                <span class="skill-badge">HTML/CSS</span>
-                <span class="skill-badge">JavaScript</span>
-                <span class="skill-badge">UI/UX Design</span>
-                <span class="skill-badge">React.js</span>
-                <span class="skill-badge">Tailwind</span>
-                <span class="skill-badge">Node.js</span>
-            </div>
-        </section>
+        </aside>
 
-        <!-- Proyek -->
-        <section id="projects">
-            <div class="section-title">
-                <i class="fa-solid fa-cube" style="color: var(--primary);"></i>
-                <span>PROYEK</span>
-            </div>
-
-            <div class="glass-card project-card">
-                <h3>CyberDashboard v1</h3>
-                <p>Dashboard monitoring data real-time dengan tema neon gelap.</p>
-                <div class="project-tags">
-                    <span>#React</span> <span>#ChartJS</span>
+        <!-- Main Content Section -->
+        <main class="main-content">
+            
+            <!-- Keahlian Section -->
+            <section>
+                <h2 class="section-header">
+                    <i class="fa-solid fa-layer-group"></i> Keahlian Utama
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-tag"><i class="fa-brands fa-react" style="color: #61dafb;"></i> React.js</div>
+                    <div class="skill-tag"><i class="fa-brands fa-js" style="color: #f7df1e;"></i> JavaScript</div>
+                    <div class="skill-tag"><i class="fa-brands fa-figma" style="color: #f24e1e;"></i> UI/UX Design</div>
+                    <div class="skill-tag"><i class="fa-brands fa-css3-alt" style="color: #38bdf8;"></i> Tailwind CSS</div>
+                    <div class="skill-tag"><i class="fa-brands fa-node-js" style="color: #68a063;"></i> Node.js</div>
+                    <div class="skill-tag"><i class="fa-solid fa-mobile-screen" style="color: #c084fc;"></i> Responsive Web</div>
                 </div>
-                <a href="#" class="btn-link">Lihat Proyek <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
+            </section>
 
-            <div class="glass-card project-card">
-                <h3>NeuraApp UI</h3>
-                <p>Desain aplikasi mobile berbasis AI untuk pemantauan kesehatan.</p>
-                <div class="project-tags">
-                    <span>#Figma</span> <span>#UIUX</span>
+            <!-- Proyek Section -->
+            <section>
+                <h2 class="section-header">
+                    <i class="fa-solid fa-briefcase"></i> Proyek Terpilih
+                </h2>
+                <div class="projects-grid">
+                    
+                    <div class="glass-card project-card">
+                        <div>
+                            <h3 class="project-title">Glass UI Analytics</h3>
+                            <p class="project-desc">Dashboard analitik modern dengan efek frosted glass yang bersih dan ringan.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">Tailwind</span>
+                            </div>
+                        </div>
+                        <a href="#" class="project-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="glass-card project-card">
+                        <div>
+                            <h3 class="project-title">Finance Mobile App</h3>
+                            <p class="project-desc">Aplikasi pelacak keuangan pribadi dengan antarmuka elegan dan simpel.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Figma</span>
+                                <span class="tech-badge">UI/UX</span>
+                            </div>
+                        </div>
+                        <a href="#" class="project-link">Lihat Detail <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+
                 </div>
-                <a href="#" class="btn-link">Lihat Proyek <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-        </section>
+            </section>
 
-        <!-- Kontak -->
-        <section id="contact">
-            <div class="section-title">
-                <i class="fa-solid fa-satellite-dish" style="color: var(--primary);"></i>
-                <span>KONTAK</span>
-            </div>
-            <div class="glass-card">
-                <p class="about-text" style="margin-bottom: 12px;">Siap untuk berkolaborasi dalam proyek futuristik berikutnya?</p>
-              <a href="https://wa.me/6283891920747?text=Halo%20wahid,%20saya%20tertarik%20untuk%20berkolaborasi%20proyek." target="_blank" class="btn-whatsapp">
-                    <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Chat via WhatsApp
-                </a>
-            </div>
-        </section>
+            <!-- Kontak Section -->
+            <section>
+                <h2 class="section-header">
+                    <i class="fa-solid fa-comments"></i> Hubungi Saya
+                </h2>
+                <div class="glass-card">
+                    <p class="project-desc" style="margin-bottom: 18px; font-size: 0.95rem;">
+                        Tertarik untuk berdiskusi atau bekerja sama dalam proyek baru? Silakan hubungi saya langsung melalui WhatsApp.
+                    </p>
+                    
+                    <!-- UBAH NOMOR TELEPON DI BAWAH (Gunakan kode negara 62) -->
+                    <a href="https://wa.me/628123456789?text=Halo%20Alexa,%20saya%20tertarik%20untuk%20berdiskusi%20mengenai%20proyek." target="_blank" class="whatsapp-btn">
+                        <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
+                    </a>
+                </div>
+            </section>
 
+        </main>
     </div>
-
-    <!-- Bottom Nav Bar Mobile -->
-    <nav class="nav-bar">
-        <a href="#about" class="nav-item active"><i class="fa-solid fa-user"></i></a>
-        <a href="#skills" class="nav-item"><i class="fa-solid fa-code"></i></a>
-        <a href="#projects" class="nav-item"><i class="fa-solid fa-rocket"></i></a>
-        <a href="#contact" class="nav-item"><i class="fa-solid fa-paper-plane"></i></a>
-    </nav>
 
 </body>
 </html>
