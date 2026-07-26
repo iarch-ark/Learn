@@ -1,101 +1,325 @@
 <!DOCTYPE html>
 <html lang="id">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Halaman Utama Kelompok 1</title>
-        <style>
-            body {
-                background-color: #121212;
-                color: #e0e0e0;
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-            }
-            header {
-                background-color: #1e1e1e;
-                color: #ffffff;
-                padding: 2rem;
-                text-align: center;
-                border-bottom: 2px solid #333333;
-            }
-            .container {
-                flex: 1;
-                max-width: 600px;
-                margin: 2rem auto;
-                padding: 0 1rem;
-                width: 100%;
-            }
-            h2 {
-                color: #bb86fc;
-                border-bottom: 1px solid #333333;
-                padding-bottom: 0.5rem;
-            }
-            .anggota {
-                background-color: #1e1e1e;
-                border: 1px solid #333333;
-                border-radius: 8px;
-                padding: 1rem;
-                margin-bottom: 1rem;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            }
-            .anggota h3 {
-                margin-top: 0;
-                color: #03dac6;
-                text-transform: capitalize;
-            }
-            footer {
-                background-color: #1e1e1e;
-                color: #888888;
-                text-align: center;
-                padding: 1rem;
-                border-top: 1px solid #333333;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <h1>Selamat Datang di Halaman Utama Kelompok 1</h1>
-            <p>Tugas Pemrograman Web dengan HTML & JavaScript</p>
-        </header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Futuristik</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #080711;
+            --card-bg: rgba(20, 20, 35, 0.6);
+            --primary: #00f0ff;
+            --secondary: #ff007f;
+            --text-color: #e0e6ed;
+            --text-dim: #8a99ad;
+            --border-glow: rgba(0, 240, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(ff, 0, 127, 0.05) 0%, transparent 20%);
+            min-height: 100vh;
+        }
+
+        /* Container Simulasi Ponsel / Mobile View */
+        .mobile-container {
+            width: 100%;
+            max-width: 430px; /* Ukuran standar ponsel modern */
+            min-height: 100vh;
+            padding: 20px 20px 80px 20px;
+            position: relative;
+            overflow-x: hidden;
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Hero / Profile Section */
+        .profile-card {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px auto;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .avatar-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -5px; left: -5px; right: -5px; bottom: -5px;
+            border-radius: 50%;
+            border: 2px dashed var(--secondary);
+            animation: rotate 12s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        /* Section Styling */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-glow);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* About Section */
+        .about-text {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* Skills Badges */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-badge {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Projects Section */
+        .project-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .project-card p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .project-tags span {
+            font-size: 0.75rem;
+            color: var(--secondary);
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Bottom Fixed Navigation Bar */
+        .nav-bar {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 390px;
+            background: rgba(10, 10, 20, 0.85);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border-glow);
+            border-radius: 25px;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            z-index: 100;
+        }
+
+        .nav-item {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-container">
         
-        <div class="container">
-            <h2>Data Anggota Kelompok</h2>
-            <!-- Wadah kosong yang akan diisi oleh JavaScript -->
-            <div id="daftar-anggota"></div>
-        </div> 
+        <!-- Header / Profil -->
+        <header class="profile-card">
+            <div class="avatar-wrapper">
+                <!-- Ganti link gambar di bawah dengan foto Anda -->
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Avatar" class="avatar-img">
+            </div>
+            <h1>ALEXA R.</h1>
+            <div class="tagline">// Web Developer & UI Designer</div>
+        </header>
 
-        <footer>
-            <p>&copy; <span id="tahun-hak-cipta"></span> Kelompok 1. All rights reserved.</p>
-        </footer>
+        <!-- Tentang Saya -->
+        <section id="about">
+            <div class="section-title">
+                <i class="fa-solid fa-terminal" style="color: var(--primary);"></i>
+                <span>TENTANG</span>
+            </div>
+            <div class="glass-card">
+                <p class="about-text">
+                    Mengembangkan antarmuka digital futuristik berkinerja tinggi. Berfokus pada pengalaman pengguna yang intuitif, estetika *cyberpunk*, dan kode yang bersih.
+                </p>
+            </div>
+        </section>
 
-        <script>
-            // 1. Data Anggota (Array of Objects)
-            const anggota = [
-                { nama: "andi", nim: "123456" },
-                { nama: "budi", nim: "654321" }
-            ];
+        <!-- Keahlian -->
+        <section id="skills">
+            <div class="section-title">
+                <i class="fa-solid fa-microchip" style="color: var(--primary);"></i>
+                <span>KEAHLIAN</span>
+            </div>
+            <div class="skills-grid">
+                <span class="skill-badge">HTML/CSS</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">UI/UX Design</span>
+                <span class="skill-badge">React.js</span>
+                <span class="skill-badge">Tailwind</span>
+                <span class="skill-badge">Node.js</span>
+            </div>
+        </section>
 
-            // 2. Render Data Anggota ke HTML
-            const wadahAnggota = document.getElementById('daftar-anggota');
-            let htmlKonten = '';
+        <!-- Proyek -->
+        <section id="projects">
+            <div class="section-title">
+                <i class="fa-solid fa-cube" style="color: var(--primary);"></i>
+                <span>PROYEK</span>
+            </div>
 
-            anggota.forEach(a => {
-                htmlKonten += `
-                    <div class="anggota">
-                        <h3>${a.nama}</h3>
-                        <p>NIM: ${a.nim}</p>
-                    </div>
-                `;
-            });
+            <div class="glass-card project-card">
+                <h3>CyberDashboard v1</h3>
+                <p>Dashboard monitoring data real-time dengan tema neon gelap.</p>
+                <div class="project-tags">
+                    <span>#React</span> <span>#ChartJS</span>
+                </div>
+                <a href="#" class="btn-link">Lihat Proyek <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
 
-            wadahAnggota.innerHTML = htmlKonten;
+            <div class="glass-card project-card">
+                <h3>NeuraApp UI</h3>
+                <p>Desain aplikasi mobile berbasis AI untuk pemantauan kesehatan.</p>
+                <div class="project-tags">
+                    <span>#Figma</span> <span>#UIUX</span>
+                </div>
+                <a href="#" class="btn-link">Lihat Proyek <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
 
-            // 3. Menampilkan Tahun Otomatis di Footer
-            document.getElementById('tahun-hak-cipta').textContent = new Date().getFullYear();
-        </script>
-    </body>
+        <!-- Kontak -->
+        <section id="contact">
+            <div class="section-title">
+                <i class="fa-solid fa-satellite-dish" style="color: var(--primary);"></i>
+                <span>KONTAK</span>
+            </div>
+            <div class="glass-card">
+                <p class="about-text" style="margin-bottom: 12px;">Siap untuk berkolaborasi dalam proyek futuristik berikutnya?</p>
+                <a href="mailto:email@contoh.com" class="btn-link" style="color: var(--secondary);">
+                    <i class="fa-regular fa-envelope"></i> Kirim Pesan
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Bottom Nav Bar Mobile -->
+    <nav class="nav-bar">
+        <a href="#about" class="nav-item active"><i class="fa-solid fa-user"></i></a>
+        <a href="#skills" class="nav-item"><i class="fa-solid fa-code"></i></a>
+        <a href="#projects" class="nav-item"><i class="fa-solid fa-rocket"></i></a>
+        <a href="#contact" class="nav-item"><i class="fa-solid fa-paper-plane"></i></a>
+    </nav>
+
+</body>
 </html>
